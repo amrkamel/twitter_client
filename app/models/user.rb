@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_one :profile
+  has_many :tweets, dependent: :destroy
 
   accepts_nested_attributes_for :profile
 
