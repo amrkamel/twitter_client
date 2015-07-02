@@ -1,4 +1,4 @@
-class CreateCountryService
+class CreateCountriesService
   COUNTRIES_PATH = 'http://openconcept.ca/sites/openconcept.ca/files/country_code_drupal_0.txt'
 
   def call
