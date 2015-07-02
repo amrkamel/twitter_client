@@ -79,6 +79,7 @@ GEM
       thor (~> 0.14)
     globalid (0.3.5)
       activesupport (>= 4.1.0)
+    gravtastic (3.2.6)
     hub (1.12.4)
     i18n (0.7.0)
     interception (0.5)
@@ -205,6 +206,7 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   devise
   figaro (>= 1.0.0.rc1)
+  gravtastic
   hub
   jbuilder (~> 2.0)
   jquery-rails
