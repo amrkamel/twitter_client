@@ -1,20 +1,14 @@
 Twitter Client
 ================
 
-This application was generated with the [rails_apps_composer](https://github.com/RailsApps/rails_apps_composer) gem
-provided by the [RailsApps Project](http://railsapps.github.io/).
+This application a simple twitter client with the following features.
+- User profiles
+- List tweets inside the feed
+- Follow/Unfollow a user
+- Private messages between friends
+- Search for users
+- View any user profile to see his tweets
 
-Rails Composer is open source and supported by subscribers. Please join RailsApps to support development of Rails Composer.
-
-Problems? Issues?
------------
-
-Need help? Ask on Stack Overflow with the tag 'railsapps.'
-
-Your application contains diagnostics in the README file. Please provide a copy of the README file when reporting any issues.
-
-If the application doesn't work as expected, please [report an issue](https://github.com/RailsApps/rails_apps_composer/issues)
-and include the diagnostics.
 
 Ruby on Rails
 -------------
@@ -23,26 +17,17 @@ This application requires:
 
 - Ruby 2.2.2
 - Rails 4.2.1
-
-Learn more about [Installing Rails](http://railsapps.github.io/installing-rails.html).
+- MySQL
 
 Getting Started
 ---------------
 
-Documentation and Support
--------------------------
+1- First you need to create a MySQL user with the name 'robusta' and password 'robusta'
+     (you can change the username or password from config/database.yml file)
 
-Issues
--------------
+2- For initializing the database run
+     "rake db:create db:migrate db:seed"
 
-Similar Projects
-----------------
-
-Contributing
-------------
-
-Credits
--------
-
-License
--------
+3- Go to the application directory and run the webrick server with the command
+     "rails s"
+     The default port is 3000 and you can access the application through http://localhost:3000
