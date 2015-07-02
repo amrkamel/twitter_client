@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150702094428) do
+ActiveRecord::Schema.define(version: 20150702100130) do
 
   create_table "countries", force: :cascade do |t|
     t.string   "code",       limit: 255
@@ -19,6 +19,20 @@ ActiveRecord::Schema.define(version: 20150702094428) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
+
+  create_table "profiles", force: :cascade do |t|
+    t.string   "username",   limit: 255,   null: false
+    t.string   "real_name",  limit: 255,   null: false
+    t.text     "bio",        limit: 65535
+    t.string   "website",    limit: 255
+    t.integer  "country_id", limit: 4
+    t.integer  "user_id",    limit: 4
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  add_index "profiles", ["country_id"], name: "index_profiles_on_country_id", using: :btree
+  add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
@@ -38,4 +52,6 @@ ActiveRecord::Schema.define(version: 20150702094428) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "profiles", "countries"
+  add_foreign_key "profiles", "users"
 end
