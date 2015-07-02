@@ -11,6 +11,8 @@ class User < ActiveRecord::Base
   has_many :tweets, dependent: :destroy
   has_many :fellowships, foreign_key: "follower_id", dependent: :destroy
   has_many :following, through: :fellowships, source: 'followed'
+  has_many :user_conversations
+  has_many :conversations, through: :user_conversations
 
   accepts_nested_attributes_for :profile
 

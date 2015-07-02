@@ -11,7 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150702104504) do
+ActiveRecord::Schema.define(version: 20150702105740) do
+
+  create_table "conversations", force: :cascade do |t|
+    t.string   "subject",    limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
 
   create_table "countries", force: :cascade do |t|
     t.string   "code",       limit: 255
@@ -54,6 +60,16 @@ ActiveRecord::Schema.define(version: 20150702104504) do
 
   add_index "tweets", ["user_id"], name: "index_tweets_on_user_id", using: :btree
 
+  create_table "user_conversations", force: :cascade do |t|
+    t.integer  "user_id",         limit: 4
+    t.integer  "conversation_id", limit: 4
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  add_index "user_conversations", ["conversation_id"], name: "index_user_conversations_on_conversation_id", using: :btree
+  add_index "user_conversations", ["user_id"], name: "index_user_conversations_on_user_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
     t.string   "encrypted_password",     limit: 255, default: "", null: false
@@ -75,4 +91,6 @@ ActiveRecord::Schema.define(version: 20150702104504) do
   add_foreign_key "profiles", "countries"
   add_foreign_key "profiles", "users"
   add_foreign_key "tweets", "users"
+  add_foreign_key "user_conversations", "conversations"
+  add_foreign_key "user_conversations", "users"
 end
