@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150702105740) do
+ActiveRecord::Schema.define(version: 20150702105931) do
 
   create_table "conversations", force: :cascade do |t|
     t.string   "subject",    limit: 255
@@ -36,6 +36,17 @@ ActiveRecord::Schema.define(version: 20150702105740) do
   add_index "fellowships", ["followed_id"], name: "index_fellowships_on_followed_id", using: :btree
   add_index "fellowships", ["follower_id", "followed_id"], name: "index_fellowships_on_follower_id_and_followed_id", unique: true, using: :btree
   add_index "fellowships", ["follower_id"], name: "index_fellowships_on_follower_id", using: :btree
+
+  create_table "messages", force: :cascade do |t|
+    t.text     "content",         limit: 65535
+    t.integer  "author_id",       limit: 4
+    t.integer  "conversation_id", limit: 4
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+  end
+
+  add_index "messages", ["author_id"], name: "index_messages_on_author_id", using: :btree
+  add_index "messages", ["conversation_id"], name: "index_messages_on_conversation_id", using: :btree
 
   create_table "profiles", force: :cascade do |t|
     t.string   "username",   limit: 255,   null: false
@@ -88,6 +99,7 @@ ActiveRecord::Schema.define(version: 20150702105740) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "messages", "conversations"
   add_foreign_key "profiles", "countries"
   add_foreign_key "profiles", "users"
   add_foreign_key "tweets", "users"
